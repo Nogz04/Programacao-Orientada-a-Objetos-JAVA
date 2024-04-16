@@ -68,7 +68,7 @@ public class Principal {
 			System.out.println(c1.getModelo());
 		}
 		else if (opcao == 6) {
-			System.out.println("Informe o modelo do carro: ");
+			System.out.println("Informe a marca do carro: ");
 			marca =  teclado.nextLine();
 			c1.setMarca(marca);
 		}
