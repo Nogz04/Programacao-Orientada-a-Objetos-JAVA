@@ -11,15 +11,36 @@ package beans;
 public class Pessoa {
     
     //Declarando os atributos que estão no banco de dados conectado, na tabela Pessoa do BD.
-    
+    public int id;
     private String nome;
     private String sexo;
     private String idioma;
 
-    public Pessoa( String nome, String sexo, String idioma) {
+    public Pessoa( int id, String nome, String sexo, String idioma) {
         this.nome = nome;
         this.sexo = sexo;
         this.idioma = idioma;
+        this.id = id;
+    }
+    
+    public Pessoa(String nome, String sexo, String idioma) {
+        this.nome = nome;
+        this.sexo = sexo;
+        this.idioma = idioma;
+   
+    }
+    
+    public Pessoa() {
+        
+   
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
   

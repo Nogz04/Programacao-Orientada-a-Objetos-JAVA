@@ -51,6 +51,11 @@ public class InterfaceCadastroPessoa extends javax.swing.JFrame {
         lblIdioma.setText("Idioma:");
 
         cmbIdioma.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione", "Africâner", "Aimará", "Albanês", "Alemão", "Amárico", "Árabe", "Armênio", "Assamês", "Azerbaijano", "Bascuense", "Bengali", "Bielo-russo", "Birmanês", "Bósnio", "Búlgaro", "Catalão", "Cazaque", "Chinês (Mandarim)", "Coreano", "Croata", "Dinamarquês", "Eslovaco", "Esloveno", "Espanhol", "Esperanto", "Estoniano", "Filipino", "Finlandês", "Francês", "Galego", "Georgiano", "Grego", "Guzerate", "Hebraico", "Hindi", "Holandês", "Húngaro", "Igbo", "Indonésio", "Inglês", "Italiano", "Japonês", "Javanês", "Kannada", "Khmer", "Kurdish", "Lao", "Letão", "Lituano", "Macedônio", "Malaio", "Malaiala", "Marata", "Mongol", "Nepalês", "Norueguês", "Oriá", "Pachto", "Persa (Farsi)", "Polonês", "Português", "Punjabi", "Romeno", "Russo", "Sérvio", "Sueco", "Tailandês", "Tamil", "Telugu", "Tibetano", "Tigrínia", "Turco", "Ucraniano", "Urdu", "Uzbeque", "Vietnamita", "Xhosa", "Zulu" }));
+        cmbIdioma.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbIdiomaActionPerformed(evt);
+            }
+        });
 
         btnGrpSexo.add(rdoMasculino);
         rdoMasculino.setText("Masculino");
@@ -93,7 +98,7 @@ public class InterfaceCadastroPessoa extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(100, 100, 100)
+                .addGap(106, 106, 106)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblNome)
                     .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -107,7 +112,7 @@ public class InterfaceCadastroPessoa extends javax.swing.JFrame {
                     .addComponent(lblIdioma)
                     .addComponent(cmbIdioma, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSalvar))
-                .addContainerGap(293, Short.MAX_VALUE))
+                .addContainerGap(287, Short.MAX_VALUE))
         );
 
         pack();
@@ -121,6 +126,7 @@ public class InterfaceCadastroPessoa extends javax.swing.JFrame {
         else if(rdoFeminino.isSelected()){
             sexo = "F";
         }
+      
         
         Pessoa p =  new Pessoa(txtNome.getText(), sexo, (String) cmbIdioma.getSelectedItem());
         p.setNome(txtNome.getText());
@@ -131,6 +137,10 @@ public class InterfaceCadastroPessoa extends javax.swing.JFrame {
         pDAO.inserir(p);
             
     }//GEN-LAST:event_btnSalvarActionPerformed
+
+    private void cmbIdiomaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbIdiomaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbIdiomaActionPerformed
 
     /**
      * @param args the command line arguments

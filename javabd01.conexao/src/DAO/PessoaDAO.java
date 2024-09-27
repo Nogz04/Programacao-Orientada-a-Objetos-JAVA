@@ -56,4 +56,91 @@ public class PessoaDAO {
         }
         
     }
+    
+    public Pessoa consulta(int id){
+        
+        String sql = "SELECT * FROM pessoa WHERE id = ?;";
+        //O INSERT INTO insere um novo registro na tabela pessoa, 
+        //onde os valores para as colunas nome, sexo e idioma serão fornecidos por parâmetros (?,?,?).
+        
+        try {
+            
+            // O objeto PreparedStatement permite que você substitua os '?' no SQL com valores reais.
+            PreparedStatement stmt = this.conn.prepareStatement(sql, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+            
+            stmt.setInt(1, id);
+            ResultSet rs = stmt.executeQuery();
+            Pessoa p = new Pessoa();
+            
+            rs.first();
+            p.setId(id);
+            p.setId(rs.getInt("id"));
+            p.setNome(rs.getString("nome"));
+            p.setSexo(rs.getString("sexo"));
+            p.setIdioma(rs.getString("idioma"));
+            
+            return p;
+            
+        }catch(SQLException ex){
+            System.out.println("Erro ao consultar dados da pessoa"+ex.getMessage());
+            return null;
+        }
+    }
+     
+    
+    public void atualizar(Pessoa pessoa){
+        
+        String sql = "UPDATE pessoa set nome = ?, sexo = ?, idioma = ? WHERE id = ?;";
+        //O INSERT INTO insere um novo registro na tabela pessoa, 
+        //onde os valores para as colunas nome, sexo e idioma serão fornecidos por parâmetros (?,?,?).
+        
+        try {
+            
+            // O objeto PreparedStatement permite que você substitua os '?' no SQL com valores reais.
+            PreparedStatement stmt = this.conn.prepareStatement(sql);
+            
+            stmt.setString(1, pessoa.getNome());
+            stmt.setString(2, pessoa.getSexo());
+            stmt.setString(3, pessoa.getIdioma());
+            stmt.setInt(4, pessoa.getId());
+            
+            stmt.execute();
+            
+            
+        }catch(SQLException ex){
+            System.out.println("Erro ao atualizar os dados da pessoa"+ex.getMessage());
+            
+        }
+    }
+    
+    
+    public void excluir(int id){
+        
+        try{
+            
+            String sql = "DELETE FROM pessoa WHERE id = ?;";
+            
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setInt(1, id);
+            stmt.execute();
+            
+            
+        }catch(SQLException ex){
+            System.out.println("Erro ao atualizar os dados da pessoa"+ex.getMessage());
+            
+        }
+        
+        
+    }
+    
 }
+            
+            
+            
+        
+            
+            
+        
+        
+    
+
