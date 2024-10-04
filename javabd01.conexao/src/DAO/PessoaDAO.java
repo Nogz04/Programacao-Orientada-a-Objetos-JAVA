@@ -11,6 +11,10 @@ import java.sql.*;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.ArrayList;
+import java.util.List;
+
+
 
 /**
  *
@@ -126,12 +130,75 @@ public class PessoaDAO {
             
             
         }catch(SQLException ex){
-            System.out.println("Erro ao excluir os dados da pessoa"+ex.getMessage());
+            System.out.println("Erro ao atualizar os dados da pessoa"+ex.getMessage());
             
         }
         
         
     }
+    
+   public List<Pessoa> getPessoas(){
+       
+       String sql = "SELECT * FROM pessoa";
+       
+       try{
+           
+           PreparedStatement stmt = conn.prepareStatement(sql, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+           
+           ResultSet rs = stmt.executeQuery();
+           List<Pessoa> listaPessoas = new ArrayList();
+           
+           while (rs.next()){
+               Pessoa p = new Pessoa();
+               p.setId(rs.getInt("id"));
+               p.setNome(rs.getString("nome"));
+               p.setSexo(rs.getString("sexo"));
+               p.setIdioma(rs.getString("idioma"));
+               listaPessoas.add(p);
+           }
+           return listaPessoas;
+           
+           
+       }catch(SQLException ex){
+           System.out.println("Erro ao consultar todas as pessoas: " + ex.getMessage());
+           return null;
+       }
+       
+   }
+   
+   public List<Pessoa> getPessoasNome(String nome, String sexo){
+        
+        String sql = "SELECT * FROM pessoa WHERE nome LIKE ? and sexo LIKE ?;";
+        
+        try {
+            
+            // O objeto PreparedStatement permite que você substitua os '?' no SQL com valores reais.
+            PreparedStatement stmt = conn.prepareStatement(sql, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+            
+            stmt.setString(1, "%"+ nome +"%");
+            stmt.setString(2, "%"+ sexo +"%");
+            ResultSet rs = stmt.executeQuery();
+            List<Pessoa> listaPessoas = new ArrayList();
+            
+            
+            
+           while(rs.next()){
+                Pessoa p = new Pessoa();
+                p.setId(rs.getInt("id"));
+                p.setNome(rs.getString("nome"));
+                p.setSexo(rs.getString("sexo"));
+                p.setIdioma(rs.getString("idioma"));
+                listaPessoas.add(p);
+           }  
+            return listaPessoas;
+            
+        }catch(SQLException ex){
+            System.out.println("Erro ao consultar todas as pessoas"+ex.getMessage());
+            return null;
+        }
+    }
+   
+   
     
 }
             

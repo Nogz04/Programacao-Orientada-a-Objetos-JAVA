@@ -48,7 +48,7 @@ public class InterfaceConsultaPessoa extends javax.swing.JFrame {
         rdoFeminino = new javax.swing.JRadioButton();
         cmbIdioma = new javax.swing.JComboBox<>();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         lblNome.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblNome.setText("Nome:");
