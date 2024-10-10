@@ -5,6 +5,7 @@
 package conexao;
 import DAO.PessoaDAO;
 import beans.Pessoa;
+import javax.swing.JOptionPane;
 /**
  *
  * @author mathe
@@ -135,6 +136,8 @@ public class InterfaceCadastroPessoa extends javax.swing.JFrame {
         
         PessoaDAO pDAO = new PessoaDAO();
         pDAO.inserir(p);
+        
+        JOptionPane.showMessageDialog(null, p.getNome() + " cadastrado com sucesso!", "Notificação", JOptionPane.INFORMATION_MESSAGE);
             
     }//GEN-LAST:event_btnSalvarActionPerformed
 

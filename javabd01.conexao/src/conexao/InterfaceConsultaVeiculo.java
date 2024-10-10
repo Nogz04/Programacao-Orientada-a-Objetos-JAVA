@@ -4,23 +4,25 @@
  */
 package conexao;
 
-import beans.Pessoa;
-import DAO.PessoaDAO;
-import javax.swing.JOptionPane;
-
 /**
  *
  * @author laboratorio
  */
-public class InterfaceConsultaPessoa extends javax.swing.JFrame {
+import DAO.PessoaDAO;
+import DAO.VeiculoDAO;
+import beans.Pessoa;
+import beans.Veiculo;
+import java.util.List;
+import javax.swing.JOptionPane;
 
-    
-    
+public class InterfaceConsultaVeiculo extends javax.swing.JFrame {
+
     /**
-     * Creates new form InterfaceConsultaPessoa
+     * Creates new form InterfaceConsultaVeiculo
      */
-    public InterfaceConsultaPessoa() {
+    public InterfaceConsultaVeiculo() {
         initComponents();
+        preencherComboPessoas();
     }
 
     /**
@@ -32,41 +34,21 @@ public class InterfaceConsultaPessoa extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnGrpSexo = new javax.swing.ButtonGroup();
-        lblNome = new javax.swing.JLabel();
-        lblSexo = new javax.swing.JLabel();
-        lblIdioma = new javax.swing.JLabel();
-        txtNome = new javax.swing.JTextField();
-        lblID = new javax.swing.JLabel();
-        txtID = new javax.swing.JTextField();
         btnConsultar = new javax.swing.JButton();
         lblMostrarID = new javax.swing.JLabel();
         txtMostrarID = new javax.swing.JTextField();
         btnAtualizar = new javax.swing.JButton();
         btnExcluir = new javax.swing.JButton();
-        rdoMasculino = new javax.swing.JRadioButton();
-        rdoFeminino = new javax.swing.JRadioButton();
-        cmbIdioma = new javax.swing.JComboBox<>();
+        lblModelo = new javax.swing.JLabel();
+        lblPlaca = new javax.swing.JLabel();
+        lblPessoa = new javax.swing.JLabel();
+        cmbPessoa = new javax.swing.JComboBox<>();
+        txtModelo = new javax.swing.JTextField();
+        lblID = new javax.swing.JLabel();
+        txtID = new javax.swing.JTextField();
+        txtPlaca = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-
-        lblNome.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lblNome.setText("Nome:");
-
-        lblSexo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lblSexo.setText("Sexo:");
-
-        lblIdioma.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lblIdioma.setText("Idioma:");
-
-        txtNome.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNomeActionPerformed(evt);
-            }
-        });
-
-        lblID.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lblID.setText("ID:");
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         btnConsultar.setBackground(new java.awt.Color(0, 204, 255));
         btnConsultar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -106,17 +88,34 @@ public class InterfaceConsultaPessoa extends javax.swing.JFrame {
             }
         });
 
-        btnGrpSexo.add(rdoMasculino);
-        rdoMasculino.setText("Masculino");
+        lblModelo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblModelo.setText("Nome:");
 
-        btnGrpSexo.add(rdoFeminino);
-        rdoFeminino.setText("Feminino");
+        lblPlaca.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblPlaca.setText("Placa:");
 
-        cmbIdioma.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        cmbIdioma.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione", "Africâner", "Aimará", "Albanês", "Alemão", "Amárico", "Árabe", "Armênio", "Assamês", "Azerbaijano", "Bascuense", "Bengali", "Bielo-russo", "Birmanês", "Bósnio", "Búlgaro", "Catalão", "Cazaque", "Chinês (Mandarim)", "Coreano", "Croata", "Dinamarquês", "Eslovaco", "Esloveno", "Espanhol", "Esperanto", "Estoniano", "Filipino", "Finlandês", "Francês", "Galego", "Georgiano", "Grego", "Guzerate", "Hebraico", "Hindi", "Holandês", "Húngaro", "Igbo", "Indonésio", "Inglês", "Italiano", "Japonês", "Javanês", "Kannada", "Khmer", "Kurdish", "Lao", "Letão", "Lituano", "Macedônio", "Malaio", "Malaiala", "Marata", "Mongol", "Nepalês", "Norueguês", "Oriá", "Pachto", "Persa (Farsi)", "Polonês", "Português", "Punjabi", "Romeno", "Russo", "Sérvio", "Sueco", "Tailandês", "Tamil", "Telugu", "Tibetano", "Tigrínia", "Turco", "Ucraniano", "Urdu", "Uzbeque", "Vietnamita", "Xhosa", "Zulu" }));
-        cmbIdioma.addActionListener(new java.awt.event.ActionListener() {
+        lblPessoa.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblPessoa.setText("Pessoa:");
+
+        cmbPessoa.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        cmbPessoa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbIdiomaActionPerformed(evt);
+                cmbPessoaActionPerformed(evt);
+            }
+        });
+
+        txtModelo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtModeloActionPerformed(evt);
+            }
+        });
+
+        lblID.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblID.setText("ID:");
+
+        txtPlaca.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPlacaActionPerformed(evt);
             }
         });
 
@@ -131,25 +130,23 @@ public class InterfaceConsultaPessoa extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblIdioma)
-                                    .addComponent(lblSexo))
+                                    .addComponent(lblPessoa)
+                                    .addComponent(lblPlaca))
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(rdoMasculino)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(rdoFeminino))
-                                    .addGroup(layout.createSequentialGroup()
                                         .addGap(31, 31, 31)
-                                        .addComponent(cmbIdioma, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addComponent(cmbPessoa, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(13, 13, 13)
+                                        .addComponent(txtPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(lblMostrarID)
                                 .addGap(18, 18, 18)
                                 .addComponent(txtMostrarID, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblNome)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(lblModelo)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtModelo, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(lblID)
                                 .addGap(35, 35, 35)
@@ -161,7 +158,7 @@ public class InterfaceConsultaPessoa extends javax.swing.JFrame {
                         .addComponent(btnAtualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(245, Short.MAX_VALUE))
+                .addContainerGap(324, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -177,118 +174,136 @@ public class InterfaceConsultaPessoa extends javax.swing.JFrame {
                     .addComponent(txtMostrarID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblNome)
-                    .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblModelo)
+                    .addComponent(txtModelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(16, 16, 16)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblSexo)
-                    .addComponent(rdoMasculino)
-                    .addComponent(rdoFeminino))
+                    .addComponent(lblPlaca)
+                    .addComponent(txtPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblIdioma)
-                    .addComponent(cmbIdioma, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblPessoa)
+                    .addComponent(cmbPessoa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(47, 47, 47)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnExcluir)
                     .addComponent(btnAtualizar))
-                .addContainerGap(130, Short.MAX_VALUE))
+                .addContainerGap(128, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
-        
-        PessoaDAO pDAO = new PessoaDAO();
+
+        VeiculoDAO vDAO = new VeiculoDAO();
         int id = Integer.parseInt(txtID.getText());
-        
-        Pessoa p = pDAO.consulta(id);
-        
-        if(p == null){
-            limparFormulario();         
-            JOptionPane.showMessageDialog(this, "Pessoa não encontrada");
-        }
-        else{
-            txtMostrarID.setText(String.valueOf(p.getId()));
-            txtNome.setText(p.getNome());
+
+        Veiculo v = vDAO.consulta(id);
+
+        if (v == null) {
+            limparFormulario();
+            JOptionPane.showMessageDialog(this, "Veiculo não encontrada");
+        } else {
+            txtMostrarID.setText(String.valueOf(v.getId()));
+            txtModelo.setText(v.getModelo());
+            txtPlaca.setText(v.getPlaca());
+
+            Pessoa pessoaParaSelecionar = v.getPessoaid(); // Supondo que isso retorna um objeto Pessoa
+
+            // Se cmbPessoa contém objetos Pessoa, podemos usar diretamente
+            //cmbPessoa.setSelectedItem(pessoaParaSelecionar);
+            // Se não funcionar, tente encontrar a pessoa na lista do JComboBox
             
-            if (p.getSexo().equals("M")){
-                rdoMasculino.setSelected(true);
+            for (int i = 0; i < cmbPessoa.getItemCount(); i++) {
+                Pessoa pessoaNoCombo = cmbPessoa.getItemAt(i);
+                if (pessoaNoCombo.getId() == pessoaParaSelecionar.getId()) { // Comparando pelo ID
+                    cmbPessoa.setSelectedItem(pessoaNoCombo);
+                    break;
+                }
             }
-            else{
-                rdoFeminino.setSelected(true);
-            }
-            
-            cmbIdioma.setSelectedItem(p.getIdioma());
-            
+
+           
+
         }
-        
-        
-            
+
     }//GEN-LAST:event_btnConsultarActionPerformed
 
-    private void txtNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNomeActionPerformed
+    public void preencherComboPessoas() {
 
-    private void btnAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarActionPerformed
-        
-        String sexo = null;
-        
-        if(rdoMasculino.isSelected()){
-            sexo = "M";
-        }
-        else if (rdoFeminino.isSelected()){
-            sexo = "F";
-        }
-        
-        Pessoa p = new Pessoa();
-        p.setId(Integer.parseInt(txtID.getText()));
-        p.setNome(txtNome.getText());
-        p.setSexo(sexo);
-        //p.setIdioma(cmbIdioma.getSelectedItem().toString());
-        p.setIdioma(cmbIdioma.getSelectedItem()+"");
-        
         PessoaDAO pDAO = new PessoaDAO();
-        pDAO.atualizar(p);
-        
-        limparFormulario();
-      
-    }//GEN-LAST:event_btnAtualizarActionPerformed
-
-    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
-       
-        int resposta = JOptionPane.showConfirmDialog(null, "Deseja realmente excluir?", "Exclusão", JOptionPane.YES_NO_OPTION);
-        if (resposta == JOptionPane.YES_OPTION){
-            
-            PessoaDAO pDAO = new PessoaDAO();
-            pDAO.excluir(Integer.parseInt(txtID.getText()));
-            JOptionPane.showMessageDialog(null, "Pessoa excluida com sucesso!", "Notificação", JOptionPane.INFORMATION_MESSAGE);
-            limparFormulario();
-            
+        List<Pessoa> listaP = pDAO.getPessoas();
+        for (Pessoa p : listaP) {
+            cmbPessoa.addItem(p);
         }
-        
-    }//GEN-LAST:event_btnExcluirActionPerformed
+
+    }
+
+    private void limparFormulario() {
+        txtID.setText("");
+        txtMostrarID.setText("");
+        txtModelo.setText("");
+        cmbPessoa.setSelectedIndex(0);
+        txtPlaca.setText("");
+
+    }
+
 
     private void txtMostrarIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMostrarIDActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtMostrarIDActionPerformed
 
-    private void cmbIdiomaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbIdiomaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cmbIdiomaActionPerformed
+    private void btnAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarActionPerformed
 
-    private void limparFormulario(){
-        txtID.setText("");
-        txtMostrarID.setText("");
-        txtNome.setText("");
-        btnGrpSexo.clearSelection();
-        cmbIdioma.setSelectedIndex(0);
-       
-    }
-    
-    
+        
+        Veiculo v = new Veiculo();
+        v.setId(Integer.parseInt(txtID.getText())); // Define o ID do veículo
+        v.setModelo(txtModelo.getText()); // Define o modelo
+        v.setPlaca(txtPlaca.getText()); // Define a placa
+
+        // Obtém a pessoa selecionada no JComboBox
+        Pessoa pessoaSelecionada = (Pessoa) cmbPessoa.getSelectedItem();
+        if (pessoaSelecionada != null) {
+            v.setPessoaid(pessoaSelecionada); // Define a pessoa no veículo
+        } else {
+            JOptionPane.showMessageDialog(this, "Selecione uma pessoa válida.");
+            return; // Sai do método se não houver pessoa selecionada
+        }
+
+        // Atualiza o veículo no banco de dados
+        VeiculoDAO vDAO = new VeiculoDAO();
+        vDAO.atualizar(v);
+
+        limparFormulario();
+
+    }//GEN-LAST:event_btnAtualizarActionPerformed
+
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
+
+        int resposta = JOptionPane.showConfirmDialog(null, "Deseja realmente excluir?", "Exclusão", JOptionPane.YES_NO_OPTION);
+        if (resposta == JOptionPane.YES_OPTION){
+            
+            VeiculoDAO vDAO = new VeiculoDAO();
+            vDAO.excluir(Integer.parseInt(txtID.getText()));
+            JOptionPane.showMessageDialog(null, "Veiculo excluido com sucesso!", "Notificação", JOptionPane.INFORMATION_MESSAGE);
+            limparFormulario();
+            
+        }
+
+    }//GEN-LAST:event_btnExcluirActionPerformed
+
+    private void txtModeloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtModeloActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtModeloActionPerformed
+
+    private void txtPlacaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPlacaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPlacaActionPerformed
+
+    private void cmbPessoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbPessoaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbPessoaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -306,20 +321,20 @@ public class InterfaceConsultaPessoa extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(InterfaceConsultaPessoa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(InterfaceConsultaVeiculo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(InterfaceConsultaPessoa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(InterfaceConsultaVeiculo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(InterfaceConsultaPessoa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(InterfaceConsultaVeiculo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(InterfaceConsultaPessoa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(InterfaceConsultaVeiculo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new InterfaceConsultaPessoa().setVisible(true);
+                new InterfaceConsultaVeiculo().setVisible(true);
             }
         });
     }
@@ -328,17 +343,15 @@ public class InterfaceConsultaPessoa extends javax.swing.JFrame {
     private javax.swing.JButton btnAtualizar;
     private javax.swing.JButton btnConsultar;
     private javax.swing.JButton btnExcluir;
-    private javax.swing.ButtonGroup btnGrpSexo;
-    private javax.swing.JComboBox<String> cmbIdioma;
+    private javax.swing.JComboBox<Pessoa> cmbPessoa;
     private javax.swing.JLabel lblID;
-    private javax.swing.JLabel lblIdioma;
+    private javax.swing.JLabel lblModelo;
     private javax.swing.JLabel lblMostrarID;
-    private javax.swing.JLabel lblNome;
-    private javax.swing.JLabel lblSexo;
-    private javax.swing.JRadioButton rdoFeminino;
-    private javax.swing.JRadioButton rdoMasculino;
+    private javax.swing.JLabel lblPessoa;
+    private javax.swing.JLabel lblPlaca;
     private javax.swing.JTextField txtID;
+    private javax.swing.JTextField txtModelo;
     private javax.swing.JTextField txtMostrarID;
-    private javax.swing.JTextField txtNome;
+    private javax.swing.JTextField txtPlaca;
     // End of variables declaration//GEN-END:variables
 }

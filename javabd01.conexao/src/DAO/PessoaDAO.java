@@ -130,7 +130,7 @@ public class PessoaDAO {
             
             
         }catch(SQLException ex){
-            System.out.println("Erro ao atualizar os dados da pessoa"+ex.getMessage());
+            System.out.println("Erro ao excluir pessoa"+ex.getMessage());
             
         }
         
